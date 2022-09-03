@@ -70,13 +70,13 @@ public class GameManager : MonoBehaviourPunCallbacks
         return players.First(x => x.gameObject == playerObj);
     }
 
-    // called whn a player hits the hatted player, giving them the hat
+    // called when a player hits the hatted player, giving them the hat
     [PunRPC]
     public void GiveHat(int playerId, bool initialGive)
     {
         //remove the hat from the currently hatted player
         if(!initialGive)
-            GetPlayer(playerId).SetHat(false);
+            GetPlayer(playerWithHat).SetHat(false);
 
         // give the hat tp the new player
         playerWithHat = playerId;
