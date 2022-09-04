@@ -92,4 +92,22 @@ public class GameManager : MonoBehaviourPunCallbacks
         else
             return false;
     }
+
+    // called when a player's help the hat for the winning amount of time
+    [PunRPC]
+    void WinGame(int playerId)
+    {
+        gameEnded = true;
+        PlayerController player = GetPlayer(playerId);
+        // set the ui to show who's won
+
+        Invoke("GoBackToMenu", 3.0f);
+    }
+
+    // called after the game has won, navegates back to the Menu scene
+    void GoBackToMenu()
+    {
+        PhotonNetwork.LeaveRoom();
+        NetworkManager.instance.ChangeScene("Menu");
+    }
 }
