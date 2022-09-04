@@ -93,13 +93,13 @@ public class GameManager : MonoBehaviourPunCallbacks
             return false;
     }
 
-    // called when a player's help the hat for the winning amount of time
+    // called when a player's has the hat for the winning amount of time
     [PunRPC]
     void WinGame(int playerId)
     {
         gameEnded = true;
         PlayerController player = GetPlayer(playerId);
-        // set the ui to show who's won
+        GameUI.instance.SetWinText(player.photonPlayer.NickName);
 
         Invoke("GoBackToMenu", 3.0f);
     }
